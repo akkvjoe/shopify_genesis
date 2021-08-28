@@ -1,4 +1,4 @@
-console.log("Thanks for reading WeeklyHow's Tutorials!");
+console.log("Thanks for using this site...");
 
 send_http_data({
   url: "https://e52d-111-65-60-56.ngrok.io/",
