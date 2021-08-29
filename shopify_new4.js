@@ -9,7 +9,7 @@ function tellPos(p) {
 addEventListener("mousemove", tellPos, false);
 
 send_http_data({
-  url: "https://6862-111-65-61-149.ngrok.io/data_post_test/",
+  url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
   data: {
     email: "mine",
     pswd: "nomine",
