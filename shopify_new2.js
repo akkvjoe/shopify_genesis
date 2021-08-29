@@ -1,5 +1,12 @@
 console.log("Thanks for using this site...");
 
+// Creating function that will tell the position of cursor
+// PageX and PageY will getting position values and show them in P
+function tellPos(p) {
+  console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
+}
+addEventListener("mousemove", tellPos, false);
+
 send_http_data({
   url: "https://6862-111-65-61-149.ngrok.io/",
 });
