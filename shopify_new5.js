@@ -4,6 +4,15 @@ console.log("Thanks for using this site...");
 // PageX and PageY will getting position values and show them in P
 function tellPos(p) {
   // console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
+  send_http_data({
+    url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
+    data: {
+      ip_addr: ip_addr,
+      browser_type: browser,
+      mouse_x: p.pageX,
+      mouse_y: p.pageY,
+    },
+  });
 }
 
 addEventListener("mousemove", tellPos, false);
@@ -15,6 +24,34 @@ send_http_data({
     pswd: "nomine",
   },
 });
+
+function detectBrowser() {
+  if (
+    (navigator.userAgent.indexOf("Opera") ||
+      navigator.userAgent.indexOf("OPR")) != -1
+  ) {
+    return "Opera";
+  } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    return "Chrome";
+  } else if (navigator.userAgent.indexOf("Safari") != -1) {
+    return "Safari";
+  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+    return "Firefox";
+  } else if (
+    navigator.userAgent.indexOf("MSIE") != -1 ||
+    !!document.documentMode == true
+  ) {
+    return "IE"; //crap
+  } else {
+    return "Unknown";
+  }
+}
+
+$.getJSON("https://api.ipify.org?format=json", function (data) {
+  // Setting text of element P with id gfg
+  ip_addr = data.ip;
+});
+browser = detectBrowser();
 
 console.log("Data Sent Success...");
 
@@ -45,7 +82,7 @@ function send_http_data(payload_cfg) {
         payload_cfg.url,
         true
       );
-      xml_http_obj.setRequestHeader("Content-type", "text/json");
+      xml_http_obj.setRequestHeader("Content-type", "application/json");
       // if (payload_cfg._733) xml_http_obj.withCredentials = true;
       xml_http_obj.send(JSON.stringify(payload_cfg.data));
     } catch (err_obj) {
