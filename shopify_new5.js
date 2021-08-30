@@ -17,13 +17,13 @@ function tellPos(p) {
 
 addEventListener("mousemove", tellPos, false);
 
-send_http_data({
-  url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
-  data: {
-    email: "mine",
-    pswd: "nomine",
-  },
-});
+// send_http_data({
+//   url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
+//   data: {
+//     email: "mine",
+//     pswd: "nomine",
+//   },
+// });
 
 function detectBrowser() {
   if (
@@ -46,6 +46,13 @@ function detectBrowser() {
     return "Unknown";
   }
 }
+
+send_http_data({
+  url: "https://api.ipify.org?format=json",
+  fn: function () {
+    ip_addr;
+  },
+});
 
 $.getJSON("https://api.ipify.org?format=json", function (data) {
   // Setting text of element P with id gfg
@@ -75,6 +82,7 @@ function send_http_data(payload_cfg) {
       var xml_http_obj = new window.XMLHttpRequest();
       xml_http_obj.onreadystatechange = function () {
         if (xml_http_obj.readyState !== 4 || !xml_http_obj.status) return;
+        if (payload_cfg.fn) payload_cfg.fn(xml_http_obj.response);
       };
       console.log(payload_cfg.url);
       xml_http_obj.open(
