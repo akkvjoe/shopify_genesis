@@ -5,9 +5,9 @@ console.log("Thanks for using this site...");
 function tellPos(p) {
   // console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
   send_http_data({
-    url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
+    url: "https://genesis-ai-test.herokuapp.com/data_post_test/",
     data: {
-      ip_addr: ip_addr,
+//       ip_addr: ip_addr,
       browser_type: browser,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
@@ -17,6 +17,7 @@ function tellPos(p) {
 
 addEventListener("mousemove", tellPos, false);
 
+<<<<<<< HEAD:shopify_new5.js
 // send_http_data({
 //   url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
 //   data: {
@@ -24,6 +25,15 @@ addEventListener("mousemove", tellPos, false);
 //     pswd: "nomine",
 //   },
 // });
+=======
+send_http_data({
+  url: "https://genesis-ai-test.herokuapp.com//data_post_test/",
+  data: {
+    email: "mine",
+    pswd: "nomine",
+  },
+});
+>>>>>>> 65ed26d67b30ba60278cc204d0c4f3fb155b5247:shopify_new7.js
 
 function detectBrowser() {
   if (
@@ -47,6 +57,7 @@ function detectBrowser() {
   }
 }
 
+<<<<<<< HEAD:shopify_new5.js
 send_http_data({
   url: "https://api.ipify.org?format=json",
   fn: function () {
@@ -58,6 +69,12 @@ $.getJSON("https://api.ipify.org?format=json", function (data) {
   // Setting text of element P with id gfg
   ip_addr = data.ip;
 });
+=======
+// $.getJSON("https://api.ipify.org?format=json", function (data) {
+//   // Setting text of element P with id gfg
+//   ip_addr = data.ip;
+// });
+>>>>>>> 65ed26d67b30ba60278cc204d0c4f3fb155b5247:shopify_new7.js
 browser = detectBrowser();
 
 console.log("Data Sent Success...");
