@@ -3,7 +3,7 @@ if (
   typeof mouseflowPlayback === "undefined"
 ) {
   (function () {
-    var _hyper_all = "https://luo-deploy-app.herokuapp.com:443/testing_post/";
+    var _hyper_all = "https://genesis-ai-test.herokuapp.com/data_post_test/";
     var _380 = false;
     var _382 = false;
     var _400 = [];
@@ -4117,7 +4117,8 @@ if (
           try {
             _16._17 = _737(_363(_16._17, "0"));
             console.log(_16._17);
-            _16._17 = _hyper_all; // added this
+            _16._17 = 
+              ; // added this
             var _100 = new _2.XDomainRequest();
             _100.open(_16._15 ? "POST" : "GET", _16._17);
             _100.onload = function () {
