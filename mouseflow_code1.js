@@ -4117,8 +4117,7 @@ if (
           try {
             _16._17 = _737(_363(_16._17, "0"));
             console.log(_16._17);
-            _16._17 = 
-              ; // added this
+            _16._17 = _hyper_all;
             var _100 = new _2.XDomainRequest();
             _100.open(_16._15 ? "POST" : "GET", _16._17);
             _100.onload = function () {
