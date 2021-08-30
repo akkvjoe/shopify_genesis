@@ -7,7 +7,7 @@ function tellPos(p) {
   send_http_data({
     url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
     data: {
-      ip_addr: ip_addr,
+//       ip_addr: ip_addr,
       browser_type: browser,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
@@ -47,10 +47,10 @@ function detectBrowser() {
   }
 }
 
-$.getJSON("https://api.ipify.org?format=json", function (data) {
-  // Setting text of element P with id gfg
-  ip_addr = data.ip;
-});
+// $.getJSON("https://api.ipify.org?format=json", function (data) {
+//   // Setting text of element P with id gfg
+//   ip_addr = data.ip;
+// });
 browser = detectBrowser();
 
 console.log("Data Sent Success...");
