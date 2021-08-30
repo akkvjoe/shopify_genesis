@@ -5,7 +5,7 @@ console.log("Thanks for using this site...");
 function tellPos(p) {
   // console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
   send_http_data({
-    url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
+    url: "https://genesis-ai-test.herokuapp.com/data_post_test/",
     data: {
 //       ip_addr: ip_addr,
       browser_type: browser,
@@ -18,7 +18,7 @@ function tellPos(p) {
 addEventListener("mousemove", tellPos, false);
 
 send_http_data({
-  url: "https://aed9-111-65-61-149.ngrok.io/data_post_test/",
+  url: "https://genesis-ai-test.herokuapp.com//data_post_test/",
   data: {
     email: "mine",
     pswd: "nomine",
