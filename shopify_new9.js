@@ -4,6 +4,9 @@ function getInitVariables(){
     ip_addr = data.ip;
   });
   browser = detectBrowser();
+}
+
+function setSessionID(){
   session_id = ip_addr + find_timestamp() + getRandomInt(1000000)
 }
 
@@ -92,6 +95,7 @@ function send_http_data(payload_cfg) {
 
 console.log("Thanks for using this site...");
 getInitVariables();
+setSessionID()
 addEventListener("mousemove", tellPos, false);
 // send_http_data({
 //   url: "https://genesis-ai-test.herokuapp.com//data_post_test/",
