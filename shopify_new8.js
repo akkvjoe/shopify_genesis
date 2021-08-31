@@ -4,6 +4,7 @@ function getInitVariables(){
     ip_addr = data.ip;
   });
   browser = detectBrowser();
+  session_id = ip_addr + find_timestamp() + getRandomInt(1000000)
 }
 
 // Creating function that will tell the position of cursor
@@ -13,12 +14,17 @@ function tellPos(p) {
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/data_post_test/",
     data: {
+      timestamp: find_timestamp(),
       ip_addr: ip_addr,
       browser_type: browser,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
     },
   });
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
 
