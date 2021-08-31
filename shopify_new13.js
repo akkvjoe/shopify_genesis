@@ -1,3 +1,8 @@
+var jquey_script = document.createElement('script');
+jquey_script.type = 'text/javascript';
+jquey_script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js';
+document.body.appendChild(jquey_script);
+
 function getInitVariables(){
   $.getJSON("https://api.ipify.org?format=json", function (data) {
     // Setting text of element P with id gfg
