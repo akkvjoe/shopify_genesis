@@ -4111,6 +4111,10 @@ if (
         _2.sessionStorage.setItem("mf_transmitQueue", _9._69(_85));
       }
       function _99(_16) {
+        console("Mouseflow sent attempt")
+        console.log(_16._17)
+        console.log(_16._15)
+        console.log("-------")
         if (!_16 || !_16._17) return;
         _329();
         if (_588() && _2.XDomainRequest) {
