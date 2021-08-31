@@ -1,5 +1,3 @@
-var ip_addr = null;
-
 function getInitVariables(){
   $.getJSON("https://api.ipify.org?format=json", function (data) {
     // Setting text of element P with id gfg
@@ -20,8 +18,7 @@ function tellPos(p) {
     url: "https://genesis-ai-test.herokuapp.com/data_post_test/",
     data: {
       timestamp: find_timestamp(),
-      ip_addr: ip_addr,
-      browser_type: browser,
+      session_id : session_id,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
     },
