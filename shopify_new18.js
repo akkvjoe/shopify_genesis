@@ -152,6 +152,7 @@ function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
         
         pc.setLocalDescription(sdp, noop, noop);
     }).catch(function(reason) {
+       console.log("Error IP: ", reason)
         // An error occurred, so handle the failure to connect
     });
 
