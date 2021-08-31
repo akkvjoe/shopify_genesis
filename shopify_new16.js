@@ -23,7 +23,7 @@ function getInitVariables(){
 }
 
 function setSessionID(){
-  session_id = ip_addr + find_timestamp() + getRandomInt(1000000);
+  session_id = ip_addr + ":" + find_timestamp() + ":" + getRandomInt(1000000);
 }
 
 function sendInitVariables(){
