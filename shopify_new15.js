@@ -1,7 +1,9 @@
-var jquey_script = document.createElement('script');
-jquey_script.type = 'text/javascript';
-jquey_script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
-document.body.appendChild(jquey_script);
+if(typeof $ === 'undefined' ){
+  var jquey_script = document.createElement('script');
+  jquey_script.type = 'text/javascript';
+  jquey_script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
+  document.body.appendChild(jquey_script); 
+}
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
@@ -9,10 +11,12 @@ var mouse_x = -1 ;
 var mouse_y = -1 ;
 
 function getInitVariables(){
-  $.getJSON("https://api.ipify.org?format=json", function (data) {
-    // Setting text of element P with id gfg
-    ip_addr = data.ip;
-  });
+  if($){
+    $.getJSON("https://api.ipify.org?format=json", function (data) {
+      // Setting text of element P with id gfg
+      ip_addr = data.ip;
+    });
+  }
   device = window.navigator.userAgent;
   browser = detectBrowser();
  
@@ -45,6 +49,10 @@ function tellPos(p) {
       session_id : session_id,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
+      mouse_button : p.button,
+      mouse_region : p.region,
+      mouse_rel_x : p.clientX,
+      mouse_rel_y : p.clientY,      
     },
   });
 }
@@ -115,6 +123,8 @@ function send_http_data(payload_cfg) {
     }
   }
 }
+
+
 
 console.log("Thanks for using this site...");
 getInitVariables();
