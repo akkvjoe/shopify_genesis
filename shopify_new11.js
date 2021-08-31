@@ -1,3 +1,5 @@
+var ip_addr = null;
+
 function getInitVariables(){
   $.getJSON("https://api.ipify.org?format=json", function (data) {
     // Setting text of element P with id gfg
@@ -7,7 +9,7 @@ function getInitVariables(){
 }
 
 function setSessionID(){
-  session_id = ip_addr + find_timestamp() + getRandomInt(1000000)
+  session_id = ip_addr + find_timestamp() + getRandomInt(1000000);
 }
 
 // Creating function that will tell the position of cursor
