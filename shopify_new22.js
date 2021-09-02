@@ -105,7 +105,7 @@ var mouse_x = -1 ;
 var mouse_y = -1 ;
 
 function getInitVariables(){
-  ip_addr = getIPfromIpify(){
+  ip_addr = getIPfromIpify()
   device = window.navigator.userAgent;
   browser = detectBrowser(); 
 }
