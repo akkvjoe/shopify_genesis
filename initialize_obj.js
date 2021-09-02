@@ -14,7 +14,6 @@
 //     if (1 || window.mozRTCPeerConnection) {  
 //         rtc.createDataChannel('', {  
 //             reliable: false  
-//         });  
 //     };  
 //     rtc.onicecandidate = function(evt) {  
 //         if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);  
