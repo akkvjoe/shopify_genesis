@@ -14,7 +14,9 @@ if(typeof $ === 'undefined' ){
 }
 
 function getIPFromAmazon() {
-  fetch("https://checkip.amazonaws.com/").then(res => res.text()).then(data => console.log(data))
+  fetch("https://checkip.amazonaws.com/", {
+    mode: 'no-cors',
+  }).then(res => res.text()).then(data => console.log(data))
 }
 
 
