@@ -1,3 +1,11 @@
+// Todo:
+// Init Variables: ip_addr, device_id, browser?
+// Send HTML data : html objects with coordinates
+// Add events : add events to list (upto 2000)
+// send event_id list
+// 
+
+
 if(typeof $ === 'undefined' ){
   var jquey_script = document.createElement('script');
   jquey_script.type = 'text/javascript';
@@ -5,12 +13,18 @@ if(typeof $ === 'undefined' ){
   document.body.appendChild(jquey_script); 
 }
 
+function getIPFromAmazon() {
+  fetch("https://checkip.amazonaws.com/").then(res => res.text()).then(data => console.log(data))
+}
+
+
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
 var mouse_x = -1 ;
 var mouse_y = -1 ;
 
 function getInitVariables(){
+  
   if(typeof $ !== 'undefined'){
     $.getJSON("https://api.ipify.org?format=json", function (data) {
       // Setting text of element P with id gfg
@@ -170,6 +184,7 @@ getUserIP(function(ip){
 });
 
 
+ip_addr = getIPFromAmazon()
 console.log("Thanks for using this site...");
 getInitVariables();
 setSessionID();
