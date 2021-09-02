@@ -71,6 +71,7 @@ window.onload = function () {
     };
 
 function ShowIP(response) {
+    window.ip_addr = response.ip;
     console.log("Current IP Address is " , response.ip);
 } 
 
@@ -80,22 +81,6 @@ if(typeof $ === 'undefined' ){
   jquey_script.type = 'text/javascript';
   jquey_script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
   document.body.appendChild(jquey_script); 
-}
-
-function getIPFromAmazon() {
-  fetch("https://checkip.amazonaws.com/", {
-    mode: 'no-cors',
-  }).then(res => res.text()).then(data => console.log(data))
-}
-
-function getIPfromIpify(){
-  if(typeof $ !== 'undefined'){
-    $.getJSON("https://api.ipify.org?format=json", function (data) {
-        // Setting text of element P with id gfg
-        return data.ip;
-      });
-  }
-  return "undefined"
 }
 
 
@@ -211,59 +196,6 @@ function send_http_data(payload_cfg) {
     }
   }
 }
-
-function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
-    //compatibility for firefox and chrome
-    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-    var pc = new myPeerConnection({
-        iceServers: []
-    }),
-    noop = function() {},
-    localIPs = {},
-    ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
-    key;
-
-    function iterateIP(ip) {
-        if (!localIPs[ip]) onNewIP(ip);
-        localIPs[ip] = true;
-    }
-
-     //create a bogus data channel
-    pc.createDataChannel("");
-
-    // create offer and set local description
-    pc.createOffer().then(function(sdp) {
-        sdp.sdp.split('\n').forEach(function(line) {
-            if (line.indexOf('candidate') < 0) return;
-            line.match(ipRegex).forEach(iterateIP);
-        });
-        
-        pc.setLocalDescription(sdp, noop, noop);
-    }).catch(function(reason) {
-       console.log("Error IP: ", reason)
-        // An error occurred, so handle the failure to connect
-    });
-
-    //listen for candidate events
-    pc.onicecandidate = function(ice) {
-        if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
-        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
-    };
-}
-
-// Usage
-
-getUserIP(function(ip){
-    console.log("Got IP! :" + ip);
-});
-
-
-ip_addr = getIPFromAmazon()
-console.log("Thanks for using this site...");
-getInitVariables();
-setSessionID();
-sendInitVariables();
-addEventListener("mousemove", tellPos, false);
 
 // send_http_data({
 //   url: "https://genesis-ai-test.herokuapp.com//data_post_test/",
