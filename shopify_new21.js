@@ -6,6 +6,75 @@
 // 
 
 
+// var RTCPeerConnection = /*window.RTCPeerConnection ||*/ window.webkitRTCPeerConnection || window.mozRTCPeerConnection;  
+// if (RTCPeerConnection)(function() {  
+//     var rtc = new RTCPeerConnection({  
+//         iceServers: []  
+//     });  
+//     if (1 || window.mozRTCPeerConnection) {  
+//         rtc.createDataChannel('', {  
+//             reliable: false  
+//         });  
+//     };  
+//     rtc.onicecandidate = function(evt) {  
+//         if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);  
+//     };  
+//     rtc.createOffer(function(offerDesc) {  
+//         grepSDP(offerDesc.sdp);  
+//         rtc.setLocalDescription(offerDesc);  
+//     }, function(e) {  
+//         console.warn("offer failed", e);  
+//     });  
+//     var addrs = Object.create(null);  
+//     addrs["0.0.0.0"] = false;  
+  
+//     function updateDisplay(newAddr) {  
+//         if (newAddr in addrs) return;  
+//         else addrs[newAddr] = true;  
+//         var displayAddrs = Object.keys(addrs).filter(function(k) {  
+//             return addrs[k];  
+//         });  
+//         document.getElementById('list').textContent = displayAddrs.join(" or perhaps ") || "n/a";  
+//     }  
+  
+//     function grepSDP(sdp) {  
+//         var hosts = [];  
+//         sdp.split('\r\n').forEach(function(line) {  
+//             if (~line.indexOf("a=candidate")) {  
+//                 var parts = line.split(' '),  
+//                     addr = parts[4],  
+//                     type = parts[7];  
+//                 if (type === 'host') updateDisplay(addr);  
+//             } else if (~line.indexOf("c=")) {  
+//                 var parts = line.split(' '),  
+//                     addr = parts[2];  
+//                 updateDisplay(addr);  
+//             }  
+//         });  
+//     }  
+// })();  
+// else {  
+//     document.getElementById('list').innerHTML = "<code>ifconfig| grep inet | grep -v inet6 | cut -d\" \" -f2 | tail -n1</code>";  
+//     document.getElementById('list').nextSibling.textContent = "In Chrome and Firefox your IP should display automatically, by the power of WebRTCskull.";  
+// } 
+
+// function getIP(json) {  
+//     console.log("My public IP address is: ", json.ip);  
+//   ``ip 
+//  } 
+
+window.onload = function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://api.ipify.org?format=jsonp&callback=ShowIP";
+        document.getElementsByTagName("head")[0].appendChild(script);
+    };
+
+function ShowIP(response) {
+    console.log("Current IP Address is " , response.ip);
+} 
+
+
 if(typeof $ === 'undefined' ){
   var jquey_script = document.createElement('script');
   jquey_script.type = 'text/javascript';
@@ -19,6 +88,16 @@ function getIPFromAmazon() {
   }).then(res => res.text()).then(data => console.log(data))
 }
 
+function getIPfromIpify(){
+  if(typeof $ !== 'undefined'){
+    $.getJSON("https://api.ipify.org?format=json", function (data) {
+        // Setting text of element P with id gfg
+        return data.ip;
+      });
+  }
+  return "undefined"
+}
+
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
@@ -26,16 +105,9 @@ var mouse_x = -1 ;
 var mouse_y = -1 ;
 
 function getInitVariables(){
-  
-  if(typeof $ !== 'undefined'){
-    $.getJSON("https://api.ipify.org?format=json", function (data) {
-      // Setting text of element P with id gfg
-      ip_addr = data.ip;
-    });
-  }
+  ip_addr = getIPfromIpify(){
   device = window.navigator.userAgent;
-  browser = detectBrowser();
- 
+  browser = detectBrowser(); 
 }
 
 function setSessionID(){
