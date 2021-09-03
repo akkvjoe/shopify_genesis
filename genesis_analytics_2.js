@@ -122,9 +122,7 @@ function find_timestamp() {
   return +new Date();
 }
 
-function 
-
-http_data(payload_cfg) {
+function send_http_data(payload_cfg) {
   // if (!payload_cfg || !payload_cfg.url) return;
   if (window.XMLHttpRequest) {
     try {
