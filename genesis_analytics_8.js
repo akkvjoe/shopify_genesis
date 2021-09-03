@@ -92,7 +92,7 @@ function tellPos(p) {
     event_list = []  
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
-      data: event_list
+      data: send_event_list,
     });
   }
 }
