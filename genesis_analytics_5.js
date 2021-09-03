@@ -57,7 +57,7 @@ function findDetails(element){
   details_dict = {
     "id" : element.id,
     "lang" : element.lang,
-    "name" : element.tagName(),
+    "name" : element.tagName,
     "top" : rect.top,
     "right" : rect.right,
     "left" : rect.left,
