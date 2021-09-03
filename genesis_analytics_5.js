@@ -1,5 +1,6 @@
 // get ip address need to complete
 // get html tags
+max_event_length = 2000
 
 if(typeof $ === 'undefined' ){
   var jquey_script = document.createElement('script');
@@ -57,7 +58,7 @@ function findDetails(element){
   details_dict = {
     "id" : element.id,
     "lang" : element.lang,
-    "name" : element.tagName,
+    "tag_name" : element.tagName,
     "top" : rect.top,
     "right" : rect.right,
     "left" : rect.left,
@@ -72,19 +73,27 @@ function findDetails(element){
 // PageX and PageY will getting position values and show them in P
 function tellPos(p) {
   // console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
-  send_http_data({
-    url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
-    data: {
+  
+  event_list.push(
+    {
       timestamp: find_timestamp(),
       session_id : session_id,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
       mouse_button : p.button,
-      mouse_region : p.region,
+      mouse_region : p.region
       mouse_rel_x : p.clientX,
       mouse_rel_y : p.clientY,      
-    },
-  });
+    }
+  )
+  if(event_list.length > max_event_length){
+    send_event_list = event_list
+    event_list = []  
+    send_http_data({
+      url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
+      data: event_list
+    });
+  }
 }
 
 function getRandomInt(max) {
@@ -149,6 +158,7 @@ function send_http_data(payload_cfg) {
   }
 }
 
+event_list = []
 
 console.log("Thanks for using this site...");
 getInitVariables();
