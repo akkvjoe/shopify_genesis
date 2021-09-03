@@ -40,7 +40,7 @@ function getallHTMLtags(){
   var list_elems = document.body.getElementsByTagName("*");
   var list_coords = []; // create an empty array
 
-  for (var elem=0; i<list_elems.length; i++) {
+  for (var i=0; i<list_elems.length; i++) {
     var coords = findDetails(list_elems[i]);
     list_coords.push(coords);
   } 
