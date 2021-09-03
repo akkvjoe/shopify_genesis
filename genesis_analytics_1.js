@@ -55,9 +55,9 @@ function getallHTMLtags(){
 function findDetails(elem){
   var rect = element.getBoundingClientRect();
   details_dict = {
-    "id" : element.id
-    "lang" : element.lang
-    "name" : element.tagName()
+    "id" : element.id,
+    "lang" : element.lang,
+    "name" : element.tagName(),
     "top" : rect.top,
     "right" : rect.right,
     "left" : rect.left,
