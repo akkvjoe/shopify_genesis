@@ -52,7 +52,7 @@ function getallHTMLtags(){
 
 
 
-function findDetails(elem){
+function findDetails(element){
   var rect = element.getBoundingClientRect();
   details_dict = {
     "id" : element.id,
