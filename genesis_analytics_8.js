@@ -88,8 +88,8 @@ function tellPos(p) {
     }
   )
   if(event_list.length > max_event_length){
-    send_event_list = event_list
-    event_list = []  
+    send_event_list = event_list.slice();
+    event_list = []  ;
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
       data: send_event_list,
