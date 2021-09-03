@@ -59,6 +59,7 @@ function findDetails(element){
     "id" : element.id,
     "lang" : element.lang,
     "tag_name" : element.tagName,
+    "name" : element.title,
     "top" : rect.top,
     "right" : rect.right,
     "left" : rect.left,
@@ -81,7 +82,7 @@ function tellPos(p) {
       mouse_x: p.pageX,
       mouse_y: p.pageY,
       mouse_button : p.button,
-      mouse_region : p.region
+      mouse_region : p.region,
       mouse_rel_x : p.clientX,
       mouse_rel_y : p.clientY,      
     }
