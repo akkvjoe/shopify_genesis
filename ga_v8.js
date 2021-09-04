@@ -307,6 +307,7 @@ function send_http_data(payload_cfg) {
 
 
 console.log("Thanks for using this site...");
+getIPaddress()
 getInitVariables();
 setSessionID();
 sendInitVariables();
