@@ -51,7 +51,7 @@ function sendallHTMLtags(){
   });
   
 //   var list_elems = document.body.getElementsByTagName("*");
-//   var list_coords = []; // create an empty array
+//   var list_coords = []; // create an empty arrayhttps://genesis-ai-test.herokuapp.com/html_initialize/
 
 //   for (var i=0; i<list_elems.length; i++) {
 //     var coords = findDetails(list_elems[i]);
@@ -137,15 +137,15 @@ function ClickTrigger(p) {
       element : element.nodeName,     
     }
   )
-  check_and_send_data(event_list, "https://genesis-ai-test.herokuapp.com/mouse_event/") ;
+  check_and_send_data(event_list) ;
 }
 
-function check_and_send_data(event_list, url){
+function check_and_send_data(event_list){
   if(event_list.length > max_event_length){
     send_event_list = event_list.slice();
     event_list = []  ;
     send_http_data({
-      url: url,
+      url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
       data: {
         session_id : session_id,
         event_list: send_event_list,
