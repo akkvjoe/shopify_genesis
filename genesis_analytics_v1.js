@@ -93,7 +93,7 @@ function MouseMoveTrigger(p) {
       mouse_rel_y : p.clientY,      
     }
   )
-  check_and send_data(event_list) ;
+  check_and_send_data(event_list) ;
 }
 
 function ScrollTrigger(p) {
@@ -107,7 +107,7 @@ function ScrollTrigger(p) {
       scroll_x: window.scrollX,   
     }
   )
-  check_and send_data(event_list) ;
+  check_and_send_data(event_list) ;
 }
 
 function KeyBoardDownTrigger(p) {
@@ -122,7 +122,7 @@ function KeyBoardDownTrigger(p) {
       is_repeat : p.repeat,   
     }
   )
-  check_and send_data(event_list) ;
+  check_and_send_data(event_list) ;
 }
 
 function ClickTrigger(p) {
@@ -134,10 +134,10 @@ function ClickTrigger(p) {
       element : element.nodeName,     
     }
   )
-  check_and send_data(event_list) ;
+  check_and_send_data(event_list) ;
 }
 
-function check_and send_data(event_list){
+function check_and_send_data(event_list){
   if(event_list.length > max_event_length){
     send_event_list = event_list.slice();
     event_list = []  ;
