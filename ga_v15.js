@@ -22,7 +22,7 @@ function getInitVariables(){
 }
 
 function setSessionID(){
-  session_id = ip_addr + ":" + find_timestamp() + ":" + getRandomInt(1000000);
+  session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
 }
 
 function sendInitVariables(){
@@ -45,8 +45,9 @@ function sendallHTMLtags(){
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
     data: {
-      "session_id" : session_id,
-      "html_data": json,
+      ip_addr: ip_addr,
+      session_id : session_id,
+      html_data : json,
     }
   });
   
@@ -157,6 +158,7 @@ function check_and_send_data(){
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
       data: {
+        ip_addr: ip_addr,
         session_id : session_id,
         event_list: send_event_list,
       }
