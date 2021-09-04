@@ -140,7 +140,7 @@ function ClickTrigger(p) {
   check_and_send_data() ;
 }
 
-function check_and_send_data(event_list){
+function check_and_send_data(){
   if(event_list.length > max_event_length){
     send_event_list = event_list.slice();
     event_list = []  ;
