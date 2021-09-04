@@ -4,6 +4,7 @@ max_event_length = 2000
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
+var window_dim = "undefined" ;
 var mouse_x = -1 ;
 var mouse_y = -1 ;
 event_list = [] ;
@@ -28,6 +29,13 @@ function WaitForIP(){
 function getInitVariables(){
   device = window.navigator.userAgent;
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
+  window_dim = {
+    inner_width : window.innerWidth,
+    inner_height : window.innerHeight,
+    scroll_y: window.scrollY,
+    scroll_x: window.scrollX,  
+  }
+  
 }
 
 function sendInitVariables(){
@@ -38,6 +46,7 @@ function sendInitVariables(){
       device: device,
       browser: browser,
       session_id : session_id,
+      window_dim : window_dim,
     },
   });
 }
@@ -91,8 +100,6 @@ function MouseMoveTrigger(p) {
       element : element.nodeName,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
-      mouse_button : p.button,
-      mouse_region : p.region,
       mouse_rel_x : p.clientX,
       mouse_rel_y : p.clientY,      
     }
@@ -135,7 +142,23 @@ function ClickTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "Click",
-      element : element.nodeName,     
+      element : element.nodeName,
+      mouse_x: p.pageX,
+      mouse_y: p.pageY,
+      mouse_rel_x : p.clientX,
+      mouse_rel_y : p.clientY,  
+    }
+  )
+  check_and_send_data() ;
+}
+
+function ResizeTrigger(p) {
+  event_list.push(
+    {
+      timestamp: find_timestamp(),
+      event_type : "Resize",
+      inner_width: window.innerWidth,
+      inner_height: window.innerHeight, 
     }
   )
   check_and_send_data() ;
@@ -278,3 +301,4 @@ addEventListener("mousemove", MouseMoveTrigger, false);
 addEventListener("keydown", KeyBoardDownTrigger, false);
 addEventListener("click", ClickTrigger, false);
 addEventListener("scroll", ScrollTrigger, false);
+addEventListener("resize", ResizeTrigger, false);
