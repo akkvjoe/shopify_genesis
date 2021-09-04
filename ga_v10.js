@@ -63,8 +63,8 @@ function sendallHTMLtags(){
 function getIPaddress(){
   send_http_data({
     url: "https://api.ipify.org?format=json",
-    fn : function(){
-      ip_addr = this.responseText
+    fn : function(res_text){
+      ip_addr = res_text
       console.log(ip_addr)
       sendInitVariables()     
     }
