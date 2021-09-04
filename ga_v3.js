@@ -40,7 +40,7 @@ function sendInitVariables(){
 function sendallHTMLtags(){
   
   var initElement = document.getElementsByTagName("html")[0];
-  var json = mapDOM(initElement, true);
+  var json = mapDOM(initElement, false);
   
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
