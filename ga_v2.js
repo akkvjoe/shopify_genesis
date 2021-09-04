@@ -146,6 +146,7 @@ function check_and_send_data(event_list){
       data: {
         session_id : session_id,
         event_list: send_event_list,
+      }
     });
   }
 }
