@@ -8,20 +8,25 @@ var mouse_x = -1 ;
 var mouse_y = -1 ;
 event_list = [] ;
 
-if(typeof $ === 'undefined' ){
-  var jquey_script = document.createElement('script');
-  jquey_script.type = 'text/javascript';
-  jquey_script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
-  document.body.appendChild(jquey_script); 
+function Initialize(){
+  getInitVariables();
+  WaitForIP();
+}
+
+function WaitForIP(){
+  send_http_data({
+    url: "https://api.ipify.org?format=json",
+    fn : function(data){
+      ip_addr = JSON.parse(data)["ip"];
+      console.log(data);
+      sendInitVariables();
+      sendallHTMLtags()
+    }
+  });
 }
 
 function getInitVariables(){
-  ip_addr = window.ip_addr
   device = window.navigator.userAgent;
-  browser = detectBrowser(); 
-}
-
-function setSessionID(){
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
 }
 
@@ -50,36 +55,21 @@ function sendallHTMLtags(){
       html_data : json,
     }
   });
-  
-//   var list_elems = document.body.getElementsByTagName("*");
-//   var list_coords = []; // create an empty arrayhttps://genesis-ai-test.herokuapp.com/html_initialize/
-
-//   for (var i=0; i<list_elems.length; i++) {
-//     var coords = findDetails(list_elems[i]);
-//     list_coords.push(coords);
-//   } 
-  
+ 
 }
 
-function getIPaddress(){
-  send_http_data({
-    url: "https://api.ipify.org?format=json",
-    fn : function(data){
-      ip_addr = JSON.parse(data)["ip"]
-      console.log(data)
-      sendInitVariables()     
-    }
-  });
-}
+
+// --------------------------------------------------------------------------------
+
 
 
 function findDetails(element){
   var rect = element.getBoundingClientRect();
   details_dict = {
-    "id" : element.id,
-    "lang" : element.lang,
-    "tag_name" : element.tagName,
-    "name" : element.title,
+//     "id" : element.id,
+//     "lang" : element.lang,
+//     "tag_name" : element.tagName,
+//     "name" : element.title,
     "top" : rect.top,
     "right" : rect.right,
     "left" : rect.left,
@@ -188,6 +178,7 @@ function mapDOM(element, json) {
   //Recursively loop through DOM elements and assign properties to object
   function treeHTML(element, object) {
       object["type"] = element.nodeName;
+      object["dim"] = findDetails(element);
       var nodeList = element.childNodes;
       if (nodeList != null) {
           if (nodeList.length) {
@@ -276,14 +267,12 @@ function send_http_data(payload_cfg) {
 
 
 
+
+
+
 console.log("Thanks for using this site...");
 
-getInitVariables();
-setSessionID();
-getIPaddress()
-// sendInitVariables();
-sendallHTMLtags();
-
+Initialize();
 
 addEventListener("mousemove", MouseMoveTrigger, false);
 addEventListener("keydown", KeyBoardDownTrigger, false);
