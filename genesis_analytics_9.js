@@ -77,7 +77,6 @@ function MouseMoveTrigger(p) {
   event_list.push(
     {
       timestamp: find_timestamp(),
-      session_id : session_id,
       event_type : "MouseMove",
       element : element.nodeName,
       mouse_x: p.pageX,
@@ -91,18 +90,30 @@ function MouseMoveTrigger(p) {
   check_and send_data(event_list) ;
 }
 
+function ScrollTrigger(p) {
+  element = p.target || p.srcElement;
+  event_list.push(
+    {
+      timestamp: find_timestamp(),
+      event_type : "Scroll",
+      element : element.nodeName,
+      scroll_y: window.scrollY,
+      scroll_x: window.scrollX,   
+    }
+  )
+  check_and send_data(event_list) ;
+}
+
 function KeyBoardDownTrigger(p) {
   element = p.target || p.srcElement;
   event_list.push(
     {
       timestamp: find_timestamp(),
-      session_id : session_id,
       event_type : "KeyBoardDown",
       element : element.nodeName,
       char_code : p.code, 
       key : p.key, 
-      is_repeat : p.repeat,
-      
+      is_repeat : p.repeat,   
     }
   )
   check_and send_data(event_list) ;
@@ -113,7 +124,6 @@ function ClickTrigger(p) {
   event_list.push(
     {
       timestamp: find_timestamp(),
-      session_id : session_id,
       event_type : "Click",
       element : element.nodeName,     
     }
@@ -127,7 +137,9 @@ function check_and send_data(event_list){
     event_list = []  ;
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
-      data: send_event_list,
+      data: {
+        session_id : session_id,
+        event_list: send_event_list,
     });
   }
 }
@@ -208,5 +220,4 @@ send_http_data({
 addEventListener("mousemove", MouseMoveTrigger, false);
 addEventListener("keydown", KeyBoardDownTrigger, false);
 addEventListener("click", ClickTrigger, false);
-
-
+addEventListener("scroll", ScrollTrigger, false);
