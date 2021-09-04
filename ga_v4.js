@@ -2,18 +2,18 @@
 // get html tags
 max_event_length = 2000
 
+var ip_addr = "undefined" ;
+var browser = "undefined" ;
+var mouse_x = -1 ;
+var mouse_y = -1 ;
+event_list = [] ;
+
 if(typeof $ === 'undefined' ){
   var jquey_script = document.createElement('script');
   jquey_script.type = 'text/javascript';
   jquey_script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
   document.body.appendChild(jquey_script); 
 }
-
-
-var ip_addr = "undefined" ;
-var browser = "undefined" ;
-var mouse_x = -1 ;
-var mouse_y = -1 ;
 
 function getInitVariables(){
   ip_addr = window.ip_addr
@@ -95,8 +95,8 @@ function MouseMoveTrigger(p) {
       mouse_rel_x : p.clientX,
       mouse_rel_y : p.clientY,      
     }
-  )
-  check_and_send_data(event_list) ;
+  );
+  check_and_send_data() ;
 }
 
 function ScrollTrigger(p) {
@@ -109,8 +109,8 @@ function ScrollTrigger(p) {
       scroll_y: window.scrollY,
       scroll_x: window.scrollX,   
     }
-  )
-  check_and_send_data(event_list) ;
+  );
+  check_and_send_data() ;
 }
 
 function KeyBoardDownTrigger(p) {
@@ -124,8 +124,8 @@ function KeyBoardDownTrigger(p) {
       key : p.key, 
       is_repeat : p.repeat,   
     }
-  )
-  check_and_send_data(event_list) ;
+  );
+  check_and_send_data() ;
 }
 
 function ClickTrigger(p) {
@@ -137,7 +137,7 @@ function ClickTrigger(p) {
       element : element.nodeName,     
     }
   )
-  check_and_send_data(event_list) ;
+  check_and_send_data() ;
 }
 
 function check_and_send_data(event_list){
@@ -262,7 +262,7 @@ function send_http_data(payload_cfg) {
   }
 }
 
-event_list = []
+
 
 console.log("Thanks for using this site...");
 getInitVariables();
