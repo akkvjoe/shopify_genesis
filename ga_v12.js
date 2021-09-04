@@ -64,7 +64,7 @@ function getIPaddress(){
   send_http_data({
     url: "https://api.ipify.org?format=json",
     fn : function(data){
-      ip_addr = data.ip
+      ip_addr = data["ip"]
       console.log(ip_addr)
       sendInitVariables()     
     }
