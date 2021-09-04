@@ -27,7 +27,7 @@ function setSessionID(){
 
 function sendInitVariables(){
   send_http_data({
-    url: "https://genesis-ai-test.herokuapp.com/data_post_test/",
+    url: "https://genesis-ai-test.herokuapp.com/new_session/",
     data: {
       ip_addr: ip_addr,
       device: device,
@@ -37,15 +37,18 @@ function sendInitVariables(){
   });
 }
 
-function getallHTMLtags(){
+function sendallHTMLtags(){
   
   var initElement = document.getElementsByTagName("html")[0];
   var json = mapDOM(initElement, true);
   
-  return {
-    "session_id" : session_id,
-    "html_data": json,
-  }
+  send_http_data({
+    url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
+    data: {
+      "session_id" : session_id,
+      "html_data": json,
+    }
+  });
   
 //   var list_elems = document.body.getElementsByTagName("*");
 //   var list_coords = []; // create an empty array
@@ -134,15 +137,15 @@ function ClickTrigger(p) {
       element : element.nodeName,     
     }
   )
-  check_and_send_data(event_list) ;
+  check_and_send_data(event_list, "https://genesis-ai-test.herokuapp.com/mouse_event/") ;
 }
 
-function check_and_send_data(event_list){
+function check_and_send_data(event_list, url){
   if(event_list.length > max_event_length){
     send_event_list = event_list.slice();
     event_list = []  ;
     send_http_data({
-      url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
+      url: url,
       data: {
         session_id : session_id,
         event_list: send_event_list,
@@ -265,11 +268,8 @@ console.log("Thanks for using this site...");
 getInitVariables();
 setSessionID();
 sendInitVariables();
-html_data = getallHTMLtags();
-send_http_data({
-  url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
-  data: html_data
-});
+sendallHTMLtags();
+
 
 addEventListener("mousemove", MouseMoveTrigger, false);
 addEventListener("keydown", KeyBoardDownTrigger, false);
