@@ -63,46 +63,12 @@ function sendallHTMLtags(){
 function getIPaddress(){
   send_http_data({
     url: "https://api.ipify.org?format=json",
-    fn : function(res_text){
-      ip_addr = res_text
+    fn : function(data){
+      ip_addr = data.ip
       console.log(ip_addr)
       sendInitVariables()     
     }
   });
-  
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       document.getElementById("demo").innerHTML =
-//       this.responseText;
-//     }
-//   };
-//   xhttp.open("GET", "xmlhttp_info.txt", true);
-//   xhttp.send();
-  
-//   if (window.XMLHttpRequest) {
-//     try {
-//       var xml_http_obj = new window.XMLHttpRequest();
-//       xml_http_obj.onreadystatechange = function () {
-//         if (xml_http_obj.readyState !== 4 || !xml_http_obj.status) return;
-//         if (payload_cfg.fn) payload_cfg.fn(xml_http_obj.response);
-//       };
-//       console.log(payload_cfg.url);
-//       xml_http_obj.open(
-//         payload_cfg.data ? "POST" : "GET",
-//         payload_cfg.url,
-//         true
-//       );
-//       xml_http_obj.setRequestHeader("Content-type", "application/json");
-//       // if (payload_cfg._733) xml_http_obj.withCredentials = true;
-//       xml_http_obj.send(JSON.stringify(payload_cfg.data));
-//     } catch (err_obj) {
-//       logging(
-//         "Error in transmitCrossDomain (XMLHttpRequest): " + err_obj.message,
-//         find_timestamp()
-//       );
-//     }
-//   }
 }
 
 
