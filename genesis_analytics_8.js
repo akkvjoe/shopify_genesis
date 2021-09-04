@@ -72,13 +72,14 @@ function findDetails(element){
 
 // Creating function that will tell the position of cursor
 // PageX and PageY will getting position values and show them in P
-function tellPos(p) {
-  // console.log("Position X : " + p.pageX + "<br />Position Y : " + p.pageY);
-  
+function MouseMoveTrigger(p) {
+  element = p.target || p.srcElement;
   event_list.push(
     {
       timestamp: find_timestamp(),
       session_id : session_id,
+      event_type : "MouseMove",
+      element : element.nodeName,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
       mouse_button : p.button,
@@ -87,6 +88,40 @@ function tellPos(p) {
       mouse_rel_y : p.clientY,      
     }
   )
+  check_and send_data(event_list) ;
+}
+
+function KeyBoardDownTrigger(p) {
+  element = p.target || p.srcElement;
+  event_list.push(
+    {
+      timestamp: find_timestamp(),
+      session_id : session_id,
+      event_type : "KeyBoardDown",
+      element : element.nodeName,
+      char_code : p.code, 
+      key : p.key, 
+      is_repeat : p.repeat,
+      
+    }
+  )
+  check_and send_data(event_list) ;
+}
+
+function ClickTrigger(p) {
+  element = p.target || p.srcElement;
+  event_list.push(
+    {
+      timestamp: find_timestamp(),
+      session_id : session_id,
+      event_type : "Click",
+      element : element.nodeName,     
+    }
+  )
+  check_and send_data(event_list) ;
+}
+
+function check_and send_data(event_list){
   if(event_list.length > max_event_length){
     send_event_list = event_list.slice();
     event_list = []  ;
@@ -96,7 +131,6 @@ function tellPos(p) {
     });
   }
 }
-
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -170,6 +204,9 @@ send_http_data({
   url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
   data: html_data
 });
-addEventListener("mousemove", tellPos, false);
+
+addEventListener("mousemove", MouseMoveTrigger, false);
+addEventListener("keydown", KeyBoardDownTrigger, false);
+addEventListener("click", ClickTrigger, false);
 
 
