@@ -244,7 +244,7 @@ function mapDOM(element, json) {
       }
       if (text_nodes.length > 0){
         object["attributes"]["text_data"] = text_nodes;
-        console.log(text_nodes);
+        // console.log(text_nodes);
       }
       if (element.attributes != null) {
           if (element.attributes.length) {
