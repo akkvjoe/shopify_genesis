@@ -209,7 +209,7 @@ function mapDOM(element, json) {
       var text_nodes = [];
       var nodeList = element.childNodes;
       if (nodeList != null) {
-          if (nodeList.length) 
+          if (nodeList.length) {
               for (var i = 0; i < nodeList.length; i++) {
                   if (nodeList[i].nodeType == 3) {
                       text_nodes.push(nodeList[i].nodeValue);
@@ -222,7 +222,7 @@ function mapDOM(element, json) {
           }
       }
       if (text_nodes.length > 0){
-        // object["attributes"]["text_data"] = text_nodes;
+        object["attributes"]["text_data"] = text_nodes;
         console.log(text_nodes);
       }
       if (element.attributes != null) {
