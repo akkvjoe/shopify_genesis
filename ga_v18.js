@@ -202,13 +202,16 @@ function mapDOM(element, json) {
   function treeHTML(element, object) {
       object["type"] = element.nodeName;
       object["dim"] = findDetails(element);
+      object["attributes"] = {};
+      object["content"] = [];
+      var text_nodes = [];
       var nodeList = element.childNodes;
       if (nodeList != null) {
-          if (nodeList.length) {
-              object["content"] = [];
+          if (nodeList.length) 
               for (var i = 0; i < nodeList.length; i++) {
                   if (nodeList[i].nodeType == 3) {
-                      object["content"].push(nodeList[i].nodeValue);
+                      text_nodes.push(nodeList[i].nodeValue);
+                      // object["content"].push(nodeList[i].nodeValue);
                   } else {
                       object["content"].push({});
                       treeHTML(nodeList[i], object["content"][object["content"].length -1]);
@@ -216,9 +219,11 @@ function mapDOM(element, json) {
               }
           }
       }
+      if (text_nodes.length > 0){
+        object["attributes"]["text_data"] = text_nodes;
+      }
       if (element.attributes != null) {
           if (element.attributes.length) {
-              object["attributes"] = {};
               for (var i = 0; i < element.attributes.length; i++) {
                   object["attributes"][element.attributes[i].nodeName] = element.attributes[i].nodeValue;
               }
