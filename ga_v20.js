@@ -33,7 +33,9 @@ function getInitVariables(){
     inner_width : window.innerWidth,
     inner_height : window.innerHeight,
     scroll_y: window.scrollY,
-    scroll_x: window.scrollX,  
+    scroll_x: window.scrollX, 
+    doc_height : document.body.clientHeight,
+    doc_width : document.body.clientWidth,
   }
   
 }
