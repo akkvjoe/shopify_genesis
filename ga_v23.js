@@ -9,6 +9,9 @@ var mouse_x = -1 ;
 var mouse_y = -1 ;
 var doc_height = -1;
 var doc_width = -1;
+var body = document.body;
+var html = document.documentElement;
+
 event_list = [] ;
 
 function Initialize(){
@@ -29,6 +32,7 @@ function WaitForIP(){
 }
 
 function getInitVariables(){
+  
   device = window.navigator.userAgent;
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
   doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
