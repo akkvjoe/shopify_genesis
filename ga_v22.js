@@ -7,6 +7,8 @@ var browser = "undefined" ;
 var window_dim = "undefined" ;
 var mouse_x = -1 ;
 var mouse_y = -1 ;
+var doc_height = -1;
+var doc_width = -1;
 event_list = [] ;
 
 function Initialize(){
@@ -29,13 +31,15 @@ function WaitForIP(){
 function getInitVariables(){
   device = window.navigator.userAgent;
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
+  doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
   window_dim = {
-    inner_width : window.innerWidth,
-    inner_height : window.innerHeight,
-    scroll_y: window.scrollY,
-    scroll_x: window.scrollX, 
-    doc_height : document.body.clientHeight,
-    doc_width : document.body.clientWidth,
+    client_width : window.innerWidth,
+    client_height : window.innerHeight,
+    scroll_y: window.pageYOffset,
+    scroll_x: window.pageXOffset, 
+    doc_height : doc_height,
+    doc_width : doc_width,
   }
   
 }
@@ -81,10 +85,10 @@ function findDetails(element){
 //     "lang" : element.lang,
 //     "tag_name" : element.tagName,
 //     "name" : element.title,
-    "top" : rect.top,
-    "right" : rect.right,
-    "left" : rect.left,
-    "bottom" : rect.bottom,
+    "top" : rect.top + window.pageYOffset,
+    "right" : rect.right + window.pageXOffset,
+    "left" : rect.left + window.pageXOffset,
+    "bottom" : rect.bottom + window.pageYOffset,
   }
   return details_dict     
 }
@@ -116,8 +120,8 @@ function ScrollTrigger(p) {
       timestamp: find_timestamp(),
       event_type : "Scroll",
       element : element.nodeName,
-      scroll_y: window.scrollY,
-      scroll_x: window.scrollX,   
+      scroll_y: window.pageYOffset,
+      scroll_x: window.pageXOffset,   
     }
   );
   check_and_send_data() ;
@@ -155,12 +159,25 @@ function ClickTrigger(p) {
 }
 
 function ResizeTrigger(p) {
+  var temp_doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  var temp_doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  
+  if(temp_doc_height != doc_height){
+    console.log("Height CHanged- Weird");
+    doc_height = temp_doc_height;
+  }
+  
+  if(temp_doc_width != doc_width){
+    console.log("Width CHanged- Weird");
+    doc_width = temp_doc_width;
+  }
+  
   event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "Resize",
-      inner_width: window.innerWidth,
-      inner_height: window.innerHeight, 
+      client_width: window.innerWidth,
+      client_height: window.innerHeight, 
     }
   )
   check_and_send_data() ;
