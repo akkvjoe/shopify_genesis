@@ -37,10 +37,20 @@ function WaitForIP(){
 function getInitVariables(){
   
   device = window.navigator.userAgent;
-  session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
+ 
+  if (window.name && window.name["app"] == "ga_v1"){
+    session_id = window.name["session_id"];
+    html_id = window.name["html_id"]    
+  }
+  else{
+    session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
+    window.name = {
+      app : "ga_v1",
+      session_id : session_id,
+      html_id = html_id
+    }
+  }
   
-  console.log(window.name, "->", session_id);
-  window.name = session_id;
   
   
   doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
@@ -83,7 +93,8 @@ function sendallHTMLtags(){
   
   var initElement = document.getElementsByTagName("html")[0];
   var json = mapDOM(initElement, false);
-  json["id"] = html_id
+  json["id"] = html_id;
+  window.name["html_id"]  = html_id;
   
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_data/",
