@@ -48,7 +48,7 @@ function getInitVariables(){
   if (window.name && window.name.split("?")[0] == "ga_v1"){
     let temp_arr = window.name.split("?");
     session_id = temp_arr[1];
-    html_id = temp_arr[2];   
+    html_id = parseInt(temp_arr[2]);   
   }
   else{
     session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
