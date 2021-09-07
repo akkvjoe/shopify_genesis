@@ -12,6 +12,8 @@ var doc_width = -1;
 var body = document.body;
 var html = document.documentElement;
 var html_id = 0;
+var shop_url;
+var page_url;
 
 event_list = [] ;
 
@@ -38,6 +40,12 @@ function getInitVariables(){
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
   doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
   doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  
+  
+  page_url = window.location.href;
+  let domain = (new URL(page_url));
+  shop_url = domain.hostname;
+  
   window_dim = {
     client_width : window.innerWidth,
     client_height : window.innerHeight,
@@ -53,6 +61,8 @@ function sendInitVariables(){
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/new_session/",
     data: {
+      shop_url : shop_url,
+      page_url : page_url,
       ip_addr: ip_addr,
       device: device,
       browser: browser,
@@ -72,8 +82,12 @@ function sendallHTMLtags(){
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_data/",
     data: {
+      shop_url : shop_url,
       ip_addr: ip_addr,
       session_id : session_id,
+      params : {
+        page_url : page_url
+      },
       html_data : json,
     }
   });
@@ -205,6 +219,7 @@ function check_and_send_data(){
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
       data: {
+        shop_url : shop_url,
         ip_addr: ip_addr,
         session_id : session_id,
         event_list: send_event_list,
@@ -300,7 +315,7 @@ function logging(log_msg, timestamp) {
 function find_timestamp() {
   return +new Date();
 }
-
+uuid
 function send_http_data(payload_cfg) {
   // if (!payload_cfg || !payload_cfg.url) return;
   if (window.XMLHttpRequest) {
