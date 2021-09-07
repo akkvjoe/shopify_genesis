@@ -11,6 +11,7 @@ var doc_height = -1;
 var doc_width = -1;
 var body = document.body;
 var html = document.documentElement;
+var html_id = 0;
 
 event_list = [] ;
 
@@ -62,19 +63,21 @@ function sendInitVariables(){
 }
 
 function sendallHTMLtags(){
+  html_id += 1;
   
   var initElement = document.getElementsByTagName("html")[0];
   var json = mapDOM(initElement, false);
+  json["id"] = html_id
   
   send_http_data({
-    url: "https://genesis-ai-test.herokuapp.com/html_initialize/",
+    url: "https://genesis-ai-test.herokuapp.com/html_data/",
     data: {
       ip_addr: ip_addr,
       session_id : session_id,
       html_data : json,
     }
   });
- 
+  
 }
 
 
@@ -169,11 +172,12 @@ function ResizeTrigger(p) {
   if(temp_doc_height != doc_height){
     console.log("Height CHanged- Weird");
     doc_height = temp_doc_height;
+    sendallHTMLtags();
   }
-  
-  if(temp_doc_width != doc_width){
+  else if(temp_doc_width != doc_width){
     console.log("Width CHanged- Weird");
     doc_width = temp_doc_width;
+    sendallHTMLtags();
   }
   
   event_list.push(
@@ -196,6 +200,7 @@ function check_and_send_data(){
       data: {
         ip_addr: ip_addr,
         session_id : session_id,
+        html_id : html_id,
         event_list: send_event_list,
       }
     });
