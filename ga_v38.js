@@ -39,18 +39,16 @@ function getInitVariables(){
   device = window.navigator.userAgent;
   
   console.log("Init Window Name" , JSON.stringify(window.name));
+  
  
-  if (window.name["app"] == "ga_v1"){
-    session_id = window.name["session_id"];
-    html_id = window.name["html_id"]; 
+  if (window.name && window.name.split("?")[0] == "ga_v1"){
+    let temp_arr = window.name.split("?");
+    session_id = temp_arr[1];
+    html_id = temp_arr[2];   
   }
   else{
     session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
-    window.name = {
-      "app" : "ga_v1",
-      "session_id" : session_id,
-      "html_id" : html_id,
-    }
+    window.name = "ga_v1" + "?" + session_id + "?" + html_id;
   }
   
   console.log("Session ID : ",session_id);
