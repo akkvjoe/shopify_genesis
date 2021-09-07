@@ -23,7 +23,7 @@ function Initialize(){
 }
 
 function update_html_id(){
-  window.name = window.name = "ga_v1" + "?" + session_id + "?" + html_id;
+  window.name = "ga_v1" + "?" + session_id + "?" + html_id;
 }
 
 function WaitForIP(){
