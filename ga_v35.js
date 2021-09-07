@@ -38,18 +38,21 @@ function getInitVariables(){
   
   device = window.navigator.userAgent;
  
-  if (window.name && window.name["app"] == "ga_v1"){
+  if (window.name["app"] == "ga_v1"){
     session_id = window.name["session_id"];
     html_id = window.name["html_id"]    
   }
   else{
     session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
     window.name = {
-      app : "ga_v1",
-      session_id : session_id,
-      html_id : html_id
+      "app" : "ga_v1",
+      "session_id" : session_id,
+      "html_id" : html_id,
     }
   }
+  
+  console.log("Session ID : ",session_id);
+  console.log("HTML ID : ", html_id);
   
   
   
