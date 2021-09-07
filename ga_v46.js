@@ -242,9 +242,10 @@ function ResizeTrigger(p) {
 }
 
 function check_and_send_data(force=false){
-  console.log("Event Type : ", typeof(event_list))
-  console.log("Event Len : ", event_list.length)
+  
   if(event_list.length > max_event_length || (force && event_list.length > 0)){
+    console.log("Event Type : ", Array.isArray(event_list))
+    console.log("Event Len : ", event_list.length)
     send_event_list = event_list.slice();
     event_list = []  ;
     send_http_data({
