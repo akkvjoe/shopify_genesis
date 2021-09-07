@@ -186,6 +186,8 @@ function ResizeTrigger(p) {
       event_type : "Resize",
       client_width: window.innerWidth,
       client_height: window.innerHeight, 
+      doc_height : doc_height,
+      doc_width : doc_width,
     }
   )
   check_and_send_data() ;
