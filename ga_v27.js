@@ -110,6 +110,7 @@ function MouseMoveTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "MouseMove",
+      html_id : html_id,
       element : element.nodeName,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
@@ -126,6 +127,7 @@ function ScrollTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "Scroll",
+      html_id : html_id,
       element : element.nodeName,
       scroll_y: window.pageYOffset,
       scroll_x: window.pageXOffset,   
@@ -140,6 +142,7 @@ function KeyBoardDownTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "KeyBoardDown",
+      html_id : html_id,
       element : element.nodeName,
       char_code : p.code, 
       key : p.key, 
@@ -155,6 +158,7 @@ function ClickTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "Click",
+      html_id : html_id,
       element : element.nodeName,
       mouse_x: p.pageX,
       mouse_y: p.pageY,
@@ -184,6 +188,7 @@ function ResizeTrigger(p) {
     {
       timestamp: find_timestamp(),
       event_type : "Resize",
+      html_id : html_id,
       client_width: window.innerWidth,
       client_height: window.innerHeight, 
       doc_height : doc_height,
@@ -202,7 +207,6 @@ function check_and_send_data(){
       data: {
         ip_addr: ip_addr,
         session_id : session_id,
-        html_id : html_id,
         event_list: send_event_list,
       }
     });
