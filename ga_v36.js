@@ -37,6 +37,8 @@ function WaitForIP(){
 function getInitVariables(){
   
   device = window.navigator.userAgent;
+  
+  console.log("Init Window Name" , window.name);
  
   if (window.name["app"] == "ga_v1"){
     session_id = window.name["session_id"];
