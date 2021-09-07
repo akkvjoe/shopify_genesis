@@ -47,7 +47,7 @@ function getInitVariables(){
     window.name = {
       app : "ga_v1",
       session_id : session_id,
-      html_id = html_id
+      html_id : html_id
     }
   }
   
