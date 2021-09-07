@@ -85,7 +85,7 @@ function sendallHTMLtags(){
       shop_url : shop_url,
       ip_addr: ip_addr,
       session_id : session_id,
-      params : {
+      html_params : {
         page_url : page_url
       },
       html_data : json,
