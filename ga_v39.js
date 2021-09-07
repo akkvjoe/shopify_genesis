@@ -22,6 +22,10 @@ function Initialize(){
   WaitForIP();
 }
 
+function update_html_id(){
+  window.name = window.name = "ga_v1" + "?" + session_id + "?" + html_id;
+}
+
 function WaitForIP(){
   send_http_data({
     url: "https://api.ipify.org?format=json",
@@ -97,7 +101,7 @@ function sendallHTMLtags(){
   var initElement = document.getElementsByTagName("html")[0];
   var json = mapDOM(initElement, false);
   json["id"] = html_id;
-  window.name["html_id"]  = html_id;
+  update_html_id();
   
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_data/",
