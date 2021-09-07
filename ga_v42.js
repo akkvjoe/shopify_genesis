@@ -1,6 +1,6 @@
 // get ip address need to complete
 // get html tags
-max_event_length = 2000
+max_event_length = 500
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
@@ -174,6 +174,10 @@ function ScrollTrigger(p) {
   check_and_send_data() ;
 }
 
+function UnloadTrigger(p) {
+  check_and_send_data(true) ;
+}
+
 function KeyBoardDownTrigger(p) {
   element = p.target || p.srcElement;
   event_list.push(
@@ -236,8 +240,8 @@ function ResizeTrigger(p) {
   check_and_send_data() ;
 }
 
-function check_and_send_data(){
-  if(event_list.length > max_event_length){
+function check_and_send_data(force=false){
+  if(event_list.length > max_event_length || force){
     send_event_list = event_list.slice();
     event_list = []  ;
     send_http_data({
@@ -381,3 +385,4 @@ addEventListener("keydown", KeyBoardDownTrigger, false);
 addEventListener("click", ClickTrigger, false);
 addEventListener("scroll", ScrollTrigger, false);
 addEventListener("resize", ResizeTrigger, false);
+addEventListener("unload", UnloadTrigger, false);
