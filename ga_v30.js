@@ -38,6 +38,11 @@ function getInitVariables(){
   
   device = window.navigator.userAgent;
   session_id = find_timestamp() + ":" + getRandomInt(1000000000000);
+  
+  console.log(window.name, "->", session_id);
+  window.name = session_id;
+  
+  
   doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
   doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
   
@@ -55,6 +60,8 @@ function getInitVariables(){
     doc_width : doc_width,
   }
   
+  console.log("Customer ID :", __st.cid);
+  
 }
 
 function sendInitVariables(){
@@ -62,7 +69,6 @@ function sendInitVariables(){
     url: "https://genesis-ai-test.herokuapp.com/new_session/",
     data: {
       shop_url : shop_url,
-      page_url : page_url,
       ip_addr: ip_addr,
       device: device,
       browser: browser,
@@ -80,7 +86,7 @@ function sendallHTMLtags(){
   json["id"] = html_id
   
   send_http_data({
-    url: "https://genesis-ai-test.herokuapp.com/html_data/",
+    url: "https://genesis-ai-test.herokuapp.com/html_data/"script stor cookies,
     data: {
       shop_url : shop_url,
       ip_addr: ip_addr,
