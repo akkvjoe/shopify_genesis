@@ -315,7 +315,7 @@ function logging(log_msg, timestamp) {
 function find_timestamp() {
   return +new Date();
 }
-uuid
+
 function send_http_data(payload_cfg) {
   // if (!payload_cfg || !payload_cfg.url) return;
   if (window.XMLHttpRequest) {
