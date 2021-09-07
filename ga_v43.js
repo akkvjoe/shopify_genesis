@@ -175,6 +175,7 @@ function ScrollTrigger(p) {
 }
 
 function UnloadTrigger(p) {
+  console.log("Unload event") ;
   check_and_send_data(true) ;
 }
 
@@ -241,7 +242,7 @@ function ResizeTrigger(p) {
 }
 
 function check_and_send_data(force=false){
-  if(event_list.length > max_event_length || force){
+  if(event_list.length > max_event_length || (force && event_list.length > 0)){
     send_event_list = event_list.slice();
     event_list = []  ;
     send_http_data({
