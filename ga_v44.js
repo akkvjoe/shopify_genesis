@@ -208,7 +208,7 @@ function ClickTrigger(p) {
       mouse_rel_x : p.clientX,
       mouse_rel_y : p.clientY,  
     }
-  )
+  );
   check_and_send_data() ;
 }
 
@@ -237,11 +237,13 @@ function ResizeTrigger(p) {
       doc_height : doc_height,
       doc_width : doc_width,
     }
-  )
+  );
   check_and_send_data() ;
 }
 
 function check_and_send_data(force=false){
+  console.log("Event Type : ", typeof(event_list)
+  console.log("Event Len : ", event_list.length)
   if(event_list.length > max_event_length || (force && event_list.length > 0)){
     send_event_list = event_list.slice();
     event_list = []  ;
