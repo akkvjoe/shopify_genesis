@@ -86,7 +86,7 @@ function sendallHTMLtags(){
   json["id"] = html_id
   
   send_http_data({
-    url: "https://genesis-ai-test.herokuapp.com/html_data/"script stor cookies,
+    url: "https://genesis-ai-test.herokuapp.com/html_data/",
     data: {
       shop_url : shop_url,
       ip_addr: ip_addr,
