@@ -65,13 +65,13 @@ function getInitVariables(){
   let temp_arr = window.sessionStorage.getItem("event_list");
   if (temp_arr){
     event_list = JSON.parse(temp_arr) ; 
+    console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length, ":" , temp_arr.length);
   }
   else{
     event_list = [];
   }
   
   console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage.getItem("event_list")), ":" , typeof(temp_arr));
-  console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length, ":" , temp_arr.length);
   
   console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
