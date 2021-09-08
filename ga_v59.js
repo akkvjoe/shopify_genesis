@@ -15,7 +15,7 @@ var html_id = 0;
 var shop_url;
 var page_url;
 
-event_list = [] ;
+// event_list = [] ;
 
 function Initialize(){
   getInitVariables();
@@ -58,6 +58,9 @@ function getInitVariables(){
   let temp_arr = window.localStorage.getItem("event_list");
   if (temp_arr){
     event_list = JSON.parse(temp_arr) ; 
+  }
+  else{
+    event_list = [];
   }
   
   console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
