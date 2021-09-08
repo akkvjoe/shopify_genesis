@@ -61,6 +61,7 @@ function getInitVariables(){
   }
   
   console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
+  console.log("LEN STORAGE : ", window.localStorage["event_list"].length);
   
   console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
