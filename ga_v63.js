@@ -17,8 +17,8 @@ var page_url;
 
 // event_list = [] ;
 
-console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage.getItem("event_list")));
-console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length);
+// console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage.getItem("event_list")));
+// console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length);
 
 for (var key in sessionStorage){
    console.log(key);
