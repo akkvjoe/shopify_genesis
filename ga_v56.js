@@ -60,7 +60,7 @@ function getInitVariables(){
     event_list = JSON.parse(temp_arr) ; 
   }
   
-  console.log("TYPEOF STORAGE : ", window.localStorage["event_list"]);
+  console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
   
   console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
