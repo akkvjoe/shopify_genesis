@@ -17,10 +17,10 @@ var page_url;
 
 // event_list = [] ;
 
-console.log("TYPEOF STORAGE : ", typeof(window.localStorage.getItem("event_list")));
-console.log("LEN STORAGE : ", window.localStorage.getItem("event_list").length);
+console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage.getItem("event_list")));
+console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length);
 
-for (var key in localStorage){
+for (var key in sessionStorage){
    console.log(key);
 }
 
@@ -62,7 +62,7 @@ function getInitVariables(){
     window.name = "ga_v1" + "?" + session_id + "?" + html_id;
   }
   
-  let temp_arr = window.localStorage.getItem("event_list");
+  let temp_arr = window.sessionStorage.getItem("event_list");
   if (temp_arr){
     event_list = JSON.parse(temp_arr) ; 
   }
@@ -70,8 +70,8 @@ function getInitVariables(){
     event_list = [];
   }
   
-  console.log("TYPEOF STORAGE : ", typeof(window.localStorage.getItem("event_list")), ":" , typeof(temp_arr));
-  console.log("LEN STORAGE : ", window.localStorage.getItem("event_list").length, ":" , temp_arr.length);
+  console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage.getItem("event_list")), ":" , typeof(temp_arr));
+  console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length, ":" , temp_arr.length);
   
   console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
@@ -277,11 +277,11 @@ function check_and_send_data(force=false){
       }
     });
   }
-  // console.log(window.localStorage.getItem("event_list"));
-  console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
-  console.log("LEN STORAGE : ", window.localStorage["event_list"].length);
+  // console.log(window.sessionStorage.getItem("event_list"));
+  console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage["event_list"]));
+  console.log("LEN STORAGE : ", window.sessionStorage["event_list"].length);
   
-  window.localStorage.setItem("event_list", JSON.stringify(event_list));
+  window.sessionStorage.setItem("event_list", JSON.stringify(event_list));
 }
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
