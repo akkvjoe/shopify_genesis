@@ -55,8 +55,8 @@ function getInitVariables(){
     window.name = "ga_v1" + "?" + session_id + "?" + html_id;
   }
   
-  if (Array.isArray(localStorage["event_list"])){
-    event_list = localStorage["event_list"] ;   
+  if (localStorage["event_list"]){
+    event_list = JSON.parse(localStorage["event_list"]) ; 
   }
   
   console.log("Event List Len :" , event_list.length)
