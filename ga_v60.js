@@ -17,6 +17,9 @@ var page_url;
 
 // event_list = [] ;
 
+console.log("TYPEOF STORAGE : ", typeof(window.localStorage.getItem("event_list")));
+console.log("LEN STORAGE : ", window.localStorage.getItem("event_list").length);
+
 function Initialize(){
   getInitVariables();
   WaitForIP();
@@ -63,8 +66,8 @@ function getInitVariables(){
     event_list = [];
   }
   
-  console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
-  console.log("LEN STORAGE : ", window.localStorage["event_list"].length);
+  console.log("TYPEOF STORAGE : ", typeof(window.localStorage.getItem("event_list")), ":" , typeof(temp_arr));
+  console.log("LEN STORAGE : ", window.localStorage.getItem("event_list").length, ":" , temp_arr.length);
   
   console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
