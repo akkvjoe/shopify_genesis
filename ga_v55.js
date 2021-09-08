@@ -60,9 +60,9 @@ function getInitVariables(){
     event_list = JSON.parse(temp_arr) ; 
   }
   
-  console.log(window.localStorage["event_list"])
+  console.log("TYPEOF STORAGE : ", window.localStorage["event_list"]);
   
-  console.log("Event List Len :" , event_list.length)
+  console.log("Event List Len :" , event_list.length);
   console.log("Session ID : ",session_id);
   console.log("HTML ID : ", html_id);
   
@@ -266,7 +266,7 @@ function check_and_send_data(force=false){
       }
     });
   }
-  console.log(window.localStorage.getItem("event_list"));
+  // console.log(window.localStorage.getItem("event_list"));
   window.localStorage.setItem("event_list", JSON.stringify(event_list));
 }
 function getRandomInt(max) {
