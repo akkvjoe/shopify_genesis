@@ -55,11 +55,12 @@ function getInitVariables(){
     window.name = "ga_v1" + "?" + session_id + "?" + html_id;
   }
   
-  if (localStorage["event_list"]){
-    event_list = JSON.parse(localStorage["event_list"]) ; 
+  let temp_arr = window.localStorage.getItem("event_list");
+  if (temp_arr){
+    event_list = JSON.parse(temp_arr) ; 
   }
   
-  console.log(localStorage["event_list"])
+  console.log(window.localStorage["event_list"])
   
   console.log("Event List Len :" , event_list.length)
   console.log("Session ID : ",session_id);
@@ -265,7 +266,7 @@ function check_and_send_data(force=false){
       }
     });
   }
-  localStorage["event_list"] = JSON.stringify(event_list);
+  window.localStorage.setItem("event_list", JSON.stringify(event_list));
 }
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
