@@ -15,7 +15,7 @@ var html_id = 0;
 var shop_url;
 var page_url;
 
-// event_list = [] ;
+event_list = [] ;
 
 function Initialize(){
   getInitVariables();
@@ -55,11 +55,11 @@ function getInitVariables(){
     window.name = "ga_v1" + "?" + session_id + "?" + html_id;
   }
   
-  if (!Array.isArray(window.event_list)){
-    window.event_list = [];   
+  if (Array.isArray(localStorage["event_list"])){
+    event_list = localStorage["event_list"] ;   
   }
   
-  console.log("Event List Len :" , window.event_list.length)
+  console.log("Event List Len :" , event_list.length)
   console.log("Session ID : ",session_id);
   console.log("HTML ID : ", html_id);
   
@@ -149,7 +149,7 @@ function findDetails(element){
 // PageX and PageY will getting position values and show them in P
 function MouseMoveTrigger(p) {
   element = p.target || p.srcElement;
-  window.event_list.push(
+  event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "MouseMove",
@@ -166,7 +166,7 @@ function MouseMoveTrigger(p) {
 
 function ScrollTrigger(p) {
   element = p.target || p.srcElement;
-  window.event_list.push(
+  event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "Scroll",
@@ -186,7 +186,7 @@ function UnloadTrigger(p) {
 
 function KeyBoardDownTrigger(p) {
   element = p.target || p.srcElement;
-  window.event_list.push(
+  event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "KeyBoardDown",
@@ -202,7 +202,7 @@ function KeyBoardDownTrigger(p) {
 
 function ClickTrigger(p) {
   element = p.target || p.srcElement;
-  window.event_list.push(
+  event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "Click",
@@ -232,7 +232,7 @@ function ResizeTrigger(p) {
     sendallHTMLtags();
   }
   
-  window.event_list.push(
+  event_list.push(
     {
       timestamp: find_timestamp(),
       event_type : "Resize",
@@ -248,11 +248,11 @@ function ResizeTrigger(p) {
 
 function check_and_send_data(force=false){
   
-  if(window.event_list.length > max_event_length || (force && window.event_list.length > 0)){
+  if(event_list.length > max_event_length || (force && event_list.length > 0)){
 //     console.log("Event Type : ", Array.isArray(event_list))
 //     console.log("Event Len : ", event_list.length)
-    send_event_list = window.event_list.slice();
-    window.event_list = []  ;
+    send_event_list = event_list.slice();
+    event_list = []  ;
     send_http_data({
       url: "https://genesis-ai-test.herokuapp.com/mouse_event/",
       data: {
@@ -263,6 +263,7 @@ function check_and_send_data(force=false){
       }
     });
   }
+  localStorage["event_list"] = JSON.stringify(event_list);
 }
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
