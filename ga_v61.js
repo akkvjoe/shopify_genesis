@@ -20,6 +20,10 @@ var page_url;
 console.log("TYPEOF STORAGE : ", typeof(window.localStorage.getItem("event_list")));
 console.log("LEN STORAGE : ", window.localStorage.getItem("event_list").length);
 
+for (var key in localStorage){
+   console.log(key);
+}
+
 function Initialize(){
   getInitVariables();
   WaitForIP();
