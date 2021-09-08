@@ -266,6 +266,7 @@ function check_and_send_data(force=false){
       }
     });
   }
+  console.log(window.localStorage.getItem("event_list"));
   window.localStorage.setItem("event_list", JSON.stringify(event_list));
 }
 function getRandomInt(max) {
