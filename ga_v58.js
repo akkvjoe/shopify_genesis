@@ -1,6 +1,6 @@
 // get ip address need to complete
 // get html tags
-max_event_length = 500
+max_event_length = 2000;
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
@@ -268,6 +268,9 @@ function check_and_send_data(force=false){
     });
   }
   // console.log(window.localStorage.getItem("event_list"));
+  console.log("TYPEOF STORAGE : ", typeof(window.localStorage["event_list"]));
+  console.log("LEN STORAGE : ", window.localStorage["event_list"].length);
+  
   window.localStorage.setItem("event_list", JSON.stringify(event_list));
 }
 function getRandomInt(max) {
