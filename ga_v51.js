@@ -59,6 +59,8 @@ function getInitVariables(){
     event_list = JSON.parse(localStorage["event_list"]) ; 
   }
   
+  consol.log(localStorage["event_list"])
+  
   console.log("Event List Len :" , event_list.length)
   console.log("Session ID : ",session_id);
   console.log("HTML ID : ", html_id);
