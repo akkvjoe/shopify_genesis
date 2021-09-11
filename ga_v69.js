@@ -1,6 +1,6 @@
 // get ip address need to complete
 // get html tags
-max_event_length = 2000;
+max_event_length = 100;
 
 var ip_addr = "undefined" ;
 var browser = "undefined" ;
