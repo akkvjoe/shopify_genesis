@@ -117,10 +117,10 @@ function sendallHTMLtags(){
   doc_width = Math.max( body.scrollWidth, body.offsetWidth, body.clientWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
    
   window_dim = {
-    test_width : html.clientHeight,
-    test_height: html.clientWidth,
-    client_width: window.innerWidth,
-    client_height : window.innerHeight,
+    client_width : html.clientWidth,
+    client_height: html.clientHeight,
+    // client_width: window.innerWidth,
+    // client_height : window.innerHeight,
     scroll_y: window.pageYOffset,
     scroll_x: window.pageXOffset, 
     doc_height : doc_height,
