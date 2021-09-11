@@ -117,7 +117,9 @@ function sendallHTMLtags(){
   doc_width = Math.max( body.scrollWidth, body.offsetWidth, body.clientWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
    
   window_dim = {
-    client_width : window.innerWidth,
+    test_width : html.clientHeight,
+    test_height: html.clientWidth,
+    client_width: window.innerWidth,
     client_height : window.innerHeight,
     scroll_y: window.pageYOffset,
     scroll_x: window.pageXOffset, 
@@ -193,7 +195,8 @@ function ScrollTrigger(p) {
       html_id : html_id,
       element : element.nodeName,
       scroll_y: window.pageYOffset,
-      scroll_x: window.pageXOffset,   
+      scroll_x: window.pageXOffset,   client_width: window.innerWidth,
+      client_height: window.innerHeight,
     }
   );
   check_and_send_data() ;
@@ -258,7 +261,7 @@ function ResizeTrigger(p) {
       event_type : "Resize",
       html_id : html_id,
       client_width: window.innerWidth,
-      client_height: window.innerHeight, 
+      client_height: window.innerHeight,
       doc_height : doc_height,
       doc_width : doc_width,
     }
