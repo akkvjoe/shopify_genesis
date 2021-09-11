@@ -65,7 +65,7 @@ function getInitVariables(){
   let temp_arr = window.sessionStorage.getItem("event_list");
   if (temp_arr){
     event_list = JSON.parse(temp_arr) ; 
-    console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list").length, ":" , temp_arr.length);
+    console.log("LEN STORAGE : ", window.sessionStorage.getItem("event_list"), ":" , temp_arr);
   }
   else{
     event_list = [];
