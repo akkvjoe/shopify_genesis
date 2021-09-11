@@ -284,8 +284,8 @@ function check_and_send_data(force=false){
     });
   }
   // console.log(window.sessionStorage.getItem("event_list"));
-  console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage["event_list"]));
-  console.log("LEN STORAGE : ", window.sessionStorage["event_list"].length);
+//   console.log("TYPEOF STORAGE : ", typeof(window.sessionStorage["event_list"]));
+//   console.log("LEN STORAGE : ", window.sessionStorage["event_list"].length);
   
   window.sessionStorage.setItem("event_list", JSON.stringify(event_list));
 }
