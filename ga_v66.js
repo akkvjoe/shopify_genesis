@@ -79,22 +79,14 @@ function getInitVariables(){
   
   
   
-  doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-  doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  
   
   
   page_url = window.location.href;
   let domain = (new URL(page_url));
   shop_url = domain.hostname;
   
-  window_dim = {
-    client_width : window.innerWidth,
-    client_height : window.innerHeight,
-    scroll_y: window.pageYOffset,
-    scroll_x: window.pageXOffset, 
-    doc_height : doc_height,
-    doc_width : doc_width,
-  }
+  
   
   console.log("Customer ID :", __st.cid);
   
@@ -108,8 +100,7 @@ function sendInitVariables(){
       ip_addr: ip_addr,
       device: device,
       browser: browser,
-      session_id : session_id,
-      window_dim : window_dim,
+      session_id : session_id
     },
   });
 }
@@ -121,6 +112,20 @@ function sendallHTMLtags(){
   var json = mapDOM(initElement, false);
   json["id"] = html_id;
   update_html_id();
+   
+  doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+   
+  window_dim = {
+    client_width : window.innerWidth,
+    client_height : window.innerHeight,
+    scroll_y: window.pageYOffset,
+    scroll_x: window.pageXOffset, 
+    doc_height : doc_height,
+    doc_width : doc_width,
+  }
+   
+  
   
   send_http_data({
     url: "https://genesis-ai-test.herokuapp.com/html_data/",
@@ -129,9 +134,10 @@ function sendallHTMLtags(){
       ip_addr: ip_addr,
       session_id : session_id,
       html_params : {
-        page_url : page_url
+        page_url : page_url,
+        window_dim : window_dim,
       },
-      html_data : json,
+      html_data : json,  
     }
   });
   
