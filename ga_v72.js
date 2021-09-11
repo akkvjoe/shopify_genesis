@@ -260,8 +260,10 @@ function ResizeTrigger(p) {
       timestamp: find_timestamp(),
       event_type : "Resize",
       html_id : html_id,
-      client_width: window.innerWidth,
-      client_height: window.innerHeight,
+      client_width : html.clientWidth,
+      client_height: html.clientHeight,
+      // client_width: window.innerWidth,
+      // client_height : window.innerHeight,
       doc_height : doc_height,
       doc_width : doc_width,
     }
