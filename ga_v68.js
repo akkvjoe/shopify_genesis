@@ -114,7 +114,7 @@ function sendallHTMLtags(){
   update_html_id();
    
   doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-  doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  doc_width = Math.max( body.scrollWidth, body.offsetWidth, body.clientWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
    
   window_dim = {
     client_width : window.innerWidth,
@@ -239,7 +239,7 @@ function ClickTrigger(p) {
 
 function ResizeTrigger(p) {
   var temp_doc_height = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-  var temp_doc_width = Math.max( body.scrollHeight, body.offsetHeight, body.clientHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+  var temp_doc_width = Math.max( body.scrollWidth, body.offsetWidth, body.clientWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
   
   if(temp_doc_height != doc_height){
     console.log("Height CHanged- Weird");
